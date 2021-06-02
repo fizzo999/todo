@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function TodoForm(props) {
 
@@ -24,6 +26,7 @@ function TodoForm(props) {
 
     return (
       <>
+        <Card>
         <h3>Add Item</h3>
         <form onSubmit={handleSubmit}>
           <label>
@@ -35,15 +38,18 @@ function TodoForm(props) {
             />
           </label>
           <label>
-            <span>Difficulty Rating</span>
+            <span>Difficulty Rating {item.difficulty}</span>
             <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleInputChange} />
           </label>
           <label>
             <span>Assigned To</span>
             <input type="text" name="assignee" placeholder="Assigned To" onChange={handleInputChange} />
           </label>
-          <button>Add Item</button>
+          <Button variant="primary" type="submit">
+            Add Item
+          </Button>
         </form>
+        </Card>
       </>
     );
 }

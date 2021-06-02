@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
-import Card from 'react-bootstrap/Card';
 
 import './todo.scss';
 
@@ -62,9 +61,7 @@ function ToDo() {
       <section className="todo">
 
         <div>
-          <Card>
-            <TodoForm handleSubmit={addItem} />
-          </Card>
+          <TodoForm handleSubmit={addItem} />
         </div>
 
         <div>
