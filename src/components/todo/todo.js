@@ -1,73 +1,81 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoForm from './form.js';
 import TodoList from './list.js';
+import Card from 'react-bootstrap/Card';
 
 import './todo.scss';
 
-class ToDo extends React.Component {
+function ToDo() {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [],
-    };
-  }
+  const [list, setList ] = useState([]);
 
-  addItem = (item) => {
-    item._id = Math.random();
+  function addItem (item) {
+    // item._id = Math.random();
+    item._id = list.length +1;
     item.complete = false;
-    this.setState({ list: [...this.state.list, item]});
+    if (!item.difficulty) item.difficulty = 1;
+    setList([...list, item]);
+    console.log(list);
   };
 
-  toggleComplete = id => {
+  function toggleComplete (id) {
 
-    let item = this.state.list.filter(i => i._id === id)[0] || {};
+    let item = list.filter(i => i._id === id)[0] || {};
 
     if (item._id) {
       item.complete = !item.complete;
-      let list = this.state.list.map(listItem => listItem._id === item._id ? item : listItem);
-      this.setState({list});
+      let newList = list.map(listItem => listItem._id === item._id ? item : listItem);
+      setList(newList);
     }
 
   };
 
-  componentDidMount() {
-    let list = [
-      { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A'},
-      { _id: 2, complete: false, text: 'Do the Laundry', difficulty: 2, assignee: 'Person A'},
-      { _id: 3, complete: false, text: 'Walk the Dog', difficulty: 4, assignee: 'Person B'},
-      { _id: 4, complete: true, text: 'Do Homework', difficulty: 3, assignee: 'Person C'},
-      { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B'},
-    ];
+  // only runs when name is updated
+  useEffect(() => {
+    // document.title being updated in the lifecycle, using useEffect, is considered a "side effect"
+    console.log('this updates only when i add a task');
+    let finished = list.filter(item => item.complete === true);
+    if (list.length > 0) { document.title = `Finished tasks: ${finished.length || '0' } Yet todo: ${list.length - finished.length}`};
+  }, [list]);
 
-    this.setState({list});
-  }
+  // on initial mount of component
+  useEffect(() => {
+    console.log('this will run on initial mounting of our component');
+      let sampleList = [
+        { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A'},
+        { _id: 2, complete: false, text: 'Do the Laundry', difficulty: 2, assignee: 'Person A'},
+        { _id: 3, complete: false, text: 'Walk the Dog', difficulty: 4, assignee: 'Person B'},
+        { _id: 4, complete: true, text: 'Do Homework', difficulty: 3, assignee: 'Person C'},
+        { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B'},
+      ];
+      setList(sampleList);
+  }, [])
 
-  render() {
-    return (
-      <>
-        <header>
-          <h2>
-          There are {this.state.list.filter(item => !item.complete).length} Items To Complete
-          </h2>
-        </header>
+  return (
+    <>
+      <header>
+        <h2>
+        There are {list.filter(item => !item.complete).length} Items To Complete
+        </h2>
+      </header>
 
-        <section className="todo">
+      <section className="todo">
 
-          <div>
-            <TodoForm handleSubmit={this.addItem} />
-          </div>
+        <div>
+          <Card>
+            <TodoForm handleSubmit={addItem} />
+          </Card>
+        </div>
 
-          <div>
-            <TodoList
-              list={this.state.list}
-              handleComplete={this.toggleComplete}
-            />
-          </div>
-        </section>
-      </>
-    );
-  }
+        <div>
+          <TodoList
+            list={list}
+            handleComplete={toggleComplete}
+          />
+        </div>
+      </section>
+    </>
+  );
 }
 
 export default ToDo;
