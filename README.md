@@ -2,6 +2,24 @@
 
 To Do List Manager using react - built in 4 phases. A Web Application for securely managing a To Do List
 
+## Author: Fizzo Pannosch
+
+**Version**: 1.1.0
+
+<!-- (increment the patch/fix version number if you make more commits past your first submission) -->
+
+## links and resources
+
+## <center> [sandbox deployed site](https://et9fd.csb.app/) </center>
+
+## <center> [netlify deployed link](https://eager-albattani-da23df.netlify.app/) </center>
+
+<hr>
+
+## <center> UML of starter code - FIZZO </center>
+
+![](src/assets/UML-todoListManager.jpg)
+
 ### Business Requirements
 
 The To Do Manager application has the following overall requirements:
@@ -53,7 +71,7 @@ const todo = mongoose.Schema({
 ```
 
 Example
-todo.gif
+![todo list manager](src/assets/todoListManager.png)
 
 ### Technical Requirements
 
@@ -163,3 +181,43 @@ You’ve been provided “starter code” for this phase. Copy the starter code 
 - Restrict access to adding, editing, deleting to certain user types
 
 <hr/>
+
+## time sheet
+
+- Number and name of feature: phase 1 - setup file structure, UML, re factor class into functional component index.html, index,js, App.js, Form.js, Header.js files - repo on github and deploy to sandbox; setState and setEffect;
+- Estimate of time needed to complete: 2 hours
+- Start time: 3:00 pm
+- Finish time: 7:00 pm
+- Actual time needed to complete: 4 hours
+
+<hr/>
+
+- Number and name of feature: phase 1 completed - bootstrap and css; implement local storage and sandbox updated
+- Estimate of time needed to complete: 2 hours
+- Start time: 8:00 pm
+- Finish time: 10:00 pm
+- Actual time needed to complete: 2 hours
+
+<hr/>
+
+## Setup
+
+git clone repo from github link:
+https://github.com/fizzo999/todo.git
+
+npm install
+(to install dependencies: react, react-dom, react-scripts, react-bootstrap, bootstrap, node-sass)
+
+Running the app
+npm run start (will run react-scripts start)
+
+<!-- ## Tests
+
+npm run test
+
+- will run the command "react-scripts test --verbose --coverage" -->
+<!-- tests performed with jest through react-scripts -->
+
+## Architecture
+
+react based jsx frontend that displays a TODO LIST - allows user input to add to the todo list1

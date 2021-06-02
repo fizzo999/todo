@@ -8,13 +8,14 @@ function ToDo() {
 
   const [list, setList ] = useState([]);
 
-  function addItem (item) {
+  async function addItem (item) {
     // item._id = Math.random();
     item._id = list.length +1;
     item.complete = false;
     if (!item.difficulty) item.difficulty = 1;
-    setList([...list, item]);
+    await setList([...list, item]);
     console.log(list);
+    await handleStorage(item);
   };
 
   function toggleComplete (id) {
@@ -48,7 +49,30 @@ function ToDo() {
         { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B'},
       ];
       setList(sampleList);
-  }, [])
+  }, []);
+
+  const handleStorage = async (singleItem) => {
+    if(!localStorage.getItem('itemKey')) {
+      await localStorage.setItem('itemKey', JSON.stringify(list));
+    } else {
+      let newStorageArray = [];
+      newStorageArray = await JSON.parse(localStorage.getItem('itemKey'));
+      let contained = false;
+      if (newStorageArray.length > 0) {
+        newStorageArray.forEach(listItem => {
+          if (listItem.text === singleItem.text && listItem.assignee === singleItem.assignee) {
+            contained = true;
+            console.log('we already have this in local STORAGE !!!', newStorageArray, contained);
+            return;
+          }
+        });
+      }
+      !contained && newStorageArray.push( singleItem );
+      // !contained && console.log('YES WE ABSOLUTELY DO already have this in local STORAGE');
+      await localStorage.setItem('itemKey', JSON.stringify(newStorageArray));
+    }
+  }
+
 
   return (
     <>
