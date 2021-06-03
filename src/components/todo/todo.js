@@ -92,6 +92,8 @@ function ToDo() {
           <TodoList
             list={list}
             handleComplete={toggleComplete}
+            handleUpdate={handleUpdate}
+            handleDelete={handleDelete}
           />
         </div>
       </section>

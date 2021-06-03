@@ -12,7 +12,10 @@ const ToDo = () => {
   const [list, setList] = useState([]);
 
   const _addItem = (item) => {
+    // console.log('SO HERE IS THE ITEM ===============================>>>>>>', item);
     item.due = new Date();
+    item.complete = false;
+    if (!item.difficulty) item.difficulty = 1;
     fetch(todoAPI, {
       method: 'post',
       mode: 'cors',
@@ -23,9 +26,50 @@ const ToDo = () => {
       .then(response => response.json())
       .then(savedItem => {
         setList([...list, savedItem])
+        // setList([...list, item])
       })
       .catch(console.error);
   };
+
+  const _updateItem = (item) => {
+    fetch(todoAPI, {
+      method: 'post',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(item)
+    })
+      .then(response => response.json())
+      .then(savedItem => {
+        setList([...list, savedItem])
+        // setList([...list, item])
+      })
+      .catch(console.error);
+
+  }
+
+  const _deleteItem = async (item) => {
+    setList(list.map(listItem => listItem._id !== item._id));
+    fetch(`${todoAPI}/${item}`, {
+      method: 'delete',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => {
+        console.log('here is the status', response.status);
+        console.log('here is the list', list);
+        console.log('here is the list', list);
+      })
+      // .then(savedItem => {
+      //   console.log('here is the status', savedItem.status)
+      //   setList([...list, savedItem])
+        // setList([...list, item])
+      // })
+      .catch(console.error);
+      await _getTodoItems();
+
+  }
 
   const _toggleComplete = id => {
 
@@ -68,7 +112,7 @@ const ToDo = () => {
     <>
       <header>
         <h2>
-          There are {list.filter(item => !item.complete).length} Items To Complete
+          {/* There are {list.length > 0 && list.filter(item => !item.complete).length} Items To Complete */}
         </h2>
       </header>
 
@@ -82,6 +126,8 @@ const ToDo = () => {
           <TodoList
             list={list}
             handleComplete={_toggleComplete}
+            handleUpdate={_updateItem}
+            handleDelete={_deleteItem}
           />
         </div>
       </section>
