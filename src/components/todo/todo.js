@@ -30,7 +30,7 @@ function ToDo() {
 
   };
 
-  // only runs when name is updated
+  // only runs when list is updated
   useEffect(() => {
     // document.title being updated in the lifecycle, using useEffect, is considered a "side effect"
     console.log('this updates only when i add a task');

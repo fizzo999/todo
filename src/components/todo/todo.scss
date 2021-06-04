@@ -23,7 +23,7 @@ header h2 {
   width: 80%;
   flex-direction: row;
   justify-content: center;
-  margin: 2vw auto;
+  margin: 0 auto;
 
   > div {
     margin: 36px;
@@ -105,6 +105,29 @@ header h2 {
       width: 100%;
       display: flex;
       justify-content: flex-end;
+    }
+  }
+}
+div.modal-dialog {
+  div.modal-header {
+    .modal-title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-complete-true {
+      background-color: #198754;
+      color: white;
+      border-radius: 12px;
+      padding: 0.5vw 3vw;
+    }
+    .header-complete-false {
+      background-color: #dc3545;
+      color: white;
+      border-radius: 12px;
+      padding: 0.5vw 3vw;
     }
   }
 }

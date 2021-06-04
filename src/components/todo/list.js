@@ -1,49 +1,97 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { When } from 'react-if';
 import useForm from '../hooks/form.js';
 
 
 function TodoList(props) {
-  const [item, setItem] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  let initialValue = { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A'};
+  const [modalItem, setModalItem] = useState(initialValue);
+  const [modalItemFromForm, setModalItemFromForm] = useState({});
   const [handleSubmit, handleInput, handleChange, values] = useForm(getTaskCallback);
 
   function getTaskCallback(task) {
-    setItem(task);
+    setModalItemFromForm(task);
+    console.log('here we are inside the helper function', task);
   }
 
-  function handleTheUpdate (e) {
+  const handleClose = () => setShowModal(false);
+
+  const handleTheUpdate = async (e) => {
     e.preventDefault();
-    e.persist();
-    console.log('we are in the lIST and here are the e', e.target.value);
+    console.log(e.target.value, 'GIVE IT TO ME - e.target.value');
     handleSubmit(e);
-    props.handleUpdate(values);
-    // e.target.reset();
-    // setItem({});
+    setModalItemFromForm(values);
+    setShowModal(false);
+    helperFunction(values);
+    console.log(values, 'GIVE IT TO ME - values');
   }
 
-  function handleTheDelete (e) {
+
+  const helperFunction = (values => {
+    console.log(modalItem._id, 'GIVE IT TO ME - modalItem._id');
+    console.log(modalItem, 'GIVE IT TO ME - modalItem');
+    console.log(modalItemFromForm, 'GIVE IT TO ME - modalItemFromForm');
+    console.log(values, 'GIVE IT TO ME - values');
+    let newModalItem;
+    newModalItem = { 
+      _id: modalItem._id, 
+      complete: values.complete ? values.complete : modalItem.complete, 
+      text: values.text ? values.text : modalItem.text, 
+      difficulty: values.difficulty ? values.difficulty : modalItem.difficulty, 
+      assignee: values.assignee ? values.assignee : modalItem.assignee
+    }
+    props.handleUpdate(newModalItem);
+    console.log(newModalItem, 'WE ARE UPLOADING IT INTO _update - newModalItem');
+
+  });
+
+  
+  const handleShow = (e) => {
     e.preventDefault();
-    e.persist();
-    console.log('we are in the lIST and here are the e', e.target.value);
-    handleSubmit(e);
-    props.handleDelete(e.target.value);
-    // props.handleDelete(values);
-    // e.target.reset();
-    // setItem({});
+    let selectedItem = props.list.filter(i => i._id === e.target.value)[0] || {};
+    // console.log(selectedItem, 'GIVE IT TO ME SELECTED');
+    if (selectedItem._id) {
+      setModalItem(selectedItem);
+    }
+    setShowModal(true);
   }
 
-
-  return (
-    
+  return (    
     <>
     {props.list.map(item => (
       <>
-        <Card className={`complete-${item.complete.toString()} listcard`}
-          key={item._id} onClick={() => props.handleComplete(item._id)}>
-            <form className="listForm">
-          <Card.Header ><span className={`header-complete-${item.complete.toString()}`}>
+      <When condition={showModal}>
+        <form>
+      <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered show={showModal} onHide={handleClose}>
+          <Modal.Header>
+            <Modal.Title><span className={`header-complete-${(modalItem ) ? modalItem.complete.toString() : ''}`}>
+            {modalItem.complete ? 'complete' : 'pending'}</span><span className="assignee"><input type="text" name="assignee" placeholder={modalItem.assignee} onChange={handleChange}/></span></Modal.Title>
+          </Modal.Header>
+          <Modal.Body><input type="text" name="text" placeholder={modalItem.text} onChange={handleChange}/></Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={(e) => handleTheUpdate(e)}>
+              Save Changes
+            </Button>
+            Difficulty: {modalItem.difficulty}
+          </Modal.Footer>
+        </Modal>
+        </form>
+      </When>
+      
+
+        <Card id={item._id ? item._id : ''} className={`complete-${item.complete.toString()} listcard`}
+          key={item._id ? item._id : ''} >
+
+          <Card.Header ><span className={`header-complete-${(item ) ? item.complete.toString() : ''}`} onClick={() => props.handleComplete(item._id ? item._id : '')}>
             {item.complete ? 'complete' : 'pending'}</span><span className="assignee">{item.assignee}</span>
           </Card.Header>
           <Card.Body >
@@ -53,12 +101,12 @@ function TodoList(props) {
             Difficulty: {item.difficulty} 
           </Card.Footer>
               <ListGroup horizontal>
-                <Button variant="outline-success" onClick={handleTheUpdate} value={item._id}>update</Button>
-                <Button variant="outline-danger" onClick={handleTheDelete} value={item._id}>delete</Button>
+                <Button variant="outline-success" onClick={handleShow} value={item._id}>update</Button>
+                <Button variant="outline-danger" onClick={() => props.handleDelete(item._id)}>delete</Button>
               </ListGroup>
-            </form>
+
         </Card>          
-        </>
+      </>
       ))}
     </>
   );

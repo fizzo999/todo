@@ -9,7 +9,6 @@ function TodoForm(props) {
 
   function getTaskCallback(task) {
     setItem(task);
-    // console.log('dude we just set the item', task);
   }
 
   // const handleInputChange = e => {
@@ -41,7 +40,7 @@ function TodoForm(props) {
             />
           </label>
           <label>
-            <span>Difficulty Rating {item.difficulty}</span>
+            <span>Difficulty Rating {values.difficulty || "1"}</span>
             <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleChange} />
           </label>
           <label>
