@@ -10,9 +10,9 @@ To Do List Manager using react - built in 4 phases. A Web Application for secure
 
 ## links and resources
 
-## <center> [sandbox deployed site](https://et9fd.csb.app/) </center>
+## <center> [sandbox deployed site](https://n8ep9.csb.app/) </center>
 
-## <center> [netlify deployed link](https://eager-albattani-da23df.netlify.app/) </center>
+<!-- ## <center> [netlify deployed link](https://eager-albattani-da23df.netlify.app/) </center> -->
 
 ![](./src/assets/ToDoApp001.PNG)
 
