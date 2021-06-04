@@ -20,17 +20,15 @@ header h2 {
 
 .todo {
   display: flex;
+  width: 80%;
   flex-direction: row;
   justify-content: center;
-  margin: 2vw;
+  margin: 0 auto;
 
   > div {
     margin: 36px;
     min-width: 400px;
-
-    div.personSpan {
-      min-width: 30%;
-    }
+    max-width: 600px;
   }
 
   form {
@@ -45,35 +43,91 @@ header h2 {
     }
   }
 
-  div.list-group-horizontal {
-    background-color: rgb(237, 228, 100);
+  div.card.listcard {
+    background-color: white;
     align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-size: 0.75em;
-    // margin: 0.75em 0.5em;
     margin: 24px auto;
     padding: 18px;
     box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2),
       0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 
-    &.complete-true {
-      background: pink;
-      text-decoration: line-through;
-    }
-
-    &:hover {
-      background: pink;
+    form {
+      width: 100%;
+      div.list-group {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
 
     button {
-      background: transparent;
-      font-size: 1.2vw;
-      border: none;
-      color: blue;
+      // background: red;
+      font-size: 1vw;
+      font-weight: 600;
+      border-radius: 12px;
+      // color: white;
       cursor: pointer;
-      padding: 0;
+      padding: 0.3vw 2vw;
       margin: 0 0.75em;
+    }
+
+    .card-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .assignee {
+        font-weight: 600;
+        font-size: 1.2vw;
+      }
+    }
+
+    .header-complete-true {
+      background-color: #198754;
+      color: white;
+      border-radius: 12px;
+      padding: 0.5vw 3vw;
+    }
+    .header-complete-false {
+      background-color: #dc3545;
+      color: white;
+      border-radius: 12px;
+      padding: 0.5vw 3vw;
+    }
+
+    .card-footer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+div.modal-dialog {
+  div.modal-header {
+    .modal-title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-complete-true {
+      background-color: #198754;
+      color: white;
+      border-radius: 12px;
+      padding: 0.5vw 3vw;
+    }
+    .header-complete-false {
+      background-color: #dc3545;
+      color: white;
+      border-radius: 12px;
+      padding: 0.5vw 3vw;
     }
   }
 }
