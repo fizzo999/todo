@@ -14,6 +14,8 @@ To Do List Manager using react - built in 4 phases. A Web Application for secure
 
 ## <center> [netlify deployed link](https://eager-albattani-da23df.netlify.app/) </center>
 
+![](./src/assets/ToDoApp001.PNG)
+
 <hr>
 
 ## <center> UML of starter code - FIZZO </center>
@@ -200,6 +202,21 @@ You’ve been provided “starter code” for this phase. Copy the starter code 
 
 <hr/>
 
+- Number and name of feature: debugging - couldnt get delete to work - took Chance, Kory and finally Kristian to find the BUG
+- Estimate of time needed to complete: 2 hours
+- Start time: 12:30 pm
+- Finish time: 5:30 pm
+- Actual time needed to complete: **_*5 hours*_**
+
+<hr/>
+
+- Number and name of feature: phase 2 - useState and useEffect - delete and update functionality - with modal for update
+- Estimate of time needed to complete: 3 hours
+- Start time: 5:30 pm
+- Finish time: 10:30 pm
+- Actual time needed to complete: 5 hours
+
+<hr/>
 ## Setup
 
 git clone repo from github link:
