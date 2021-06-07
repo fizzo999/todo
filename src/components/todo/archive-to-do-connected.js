@@ -20,8 +20,28 @@ const ToDo = () => {
   const { setOptions, response } = useAjax();
 
   const siteContext = useContext(SettingsContext);
+  // const authContext = useContext(AuthContext);
 
   const [list, setList] = useState([]);
+  // console.log('LIST', list); Kristian taught me this. Have to set console.log outside of the function so it re triggers on every render - also because useState is async
+
+  // const _addItem = (item) => {
+  //   item.due = new Date();
+  //   item.complete = false;
+  //   if (!item.difficulty) item.difficulty = 1;
+  //   fetch(todoAPI, {
+  //     method: 'post',
+  //     mode: 'cors',
+  //     cache: 'no-cache',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(item)
+  //   })
+  //     .then(response => response.json())
+  //     .then(savedItem => {
+  //       setList([...list, savedItem]);
+  //     })
+  //     .catch(console.error);
+  // };
 
   const _addItem = async (item) => {
     item.due = new Date();
@@ -58,6 +78,31 @@ const ToDo = () => {
     }
   };
 
+  // const _deleteItem = async (id) => {
+  //   let item = list.filter(i => i._id === id)[0] || {};
+  //   if(item._id){
+  //     await fetch(`${todoAPI}/${id}`, {
+  //       method: 'delete',
+  //       mode: 'cors',
+  //       cache: 'no-cache',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(item)
+  //     })
+  //       .then(response => {
+  //         console.log('status', response.status);
+  //         response.json();
+  //       })
+  //       .then(() => {
+  //         newList = list.filter(listItem => listItem._id !== id);
+  //         console.log('so here is the list', list);
+  //         console.log('so here is the newList', newList);
+  //         setList(newList);
+  //         // setTimeout(() => { }, 3000);
+  //       })
+  //       .catch(console.error);
+  //   }
+  // };
+
   const _deleteItem = async(id) => {
     const requestOptions = {
       method: 'delete',
@@ -65,6 +110,28 @@ const ToDo = () => {
     };
     setOptions(requestOptions);
   };
+
+  // const _toggleComplete = id => {
+
+  //   let item = list.filter(i => i._id === id)[0] || {};
+
+  //   if (item._id) {
+  //     item.complete = !item.complete;
+  //     let url = `${todoAPI}/${id}`;
+  //     fetch(url, {
+  //       method: 'put',
+  //       mode: 'cors',
+  //       cache: 'no-cache',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(item)
+  //     })
+  //       .then(response => response.json())
+  //       .then(savedItem => {
+  //         setList(list.map(listItem => listItem._id === item._id ? savedItem : listItem));
+  //       })
+  //       .catch(console.error);
+  //   }
+  // };
 
   const _toggleComplete = async(id) => {
     const item = list.filter(i => i._id === id)[0] || {};
@@ -78,6 +145,16 @@ const ToDo = () => {
       setOptions(requestOptions);
     }
   };
+
+  // const _getTodoItems = () => {
+  //   fetch(todoAPI, {
+  //     method: 'get',
+  //     mode: 'cors',
+  //   })
+  //     .then(data => data.json())
+  //     .then(data => setList(data.results))
+  //     .catch(console.error);  
+  // };
 
   const _getTodoItems = useCallback( async () => {
     const requestOptions = {
@@ -96,9 +173,11 @@ const ToDo = () => {
   }, [response, _getTodoItems, setList]);
 
   useEffect(_getTodoItems, []);
+  // useEffect(_getTodoItems, [response]);
 
   // only runs when list is updated
   useEffect(() => {
+    // console.log('this updates only when i add a task');
     let finished = list.filter(item => item.complete === true);
     if (list.length > 0) { document.title = `Finished tasks: ${finished.length || '0' } Yet todo: ${list.length - finished.length}`;}
   }, [list]);
@@ -143,3 +222,5 @@ const ToDo = () => {
 };
 
 export default ToDo;
+
+

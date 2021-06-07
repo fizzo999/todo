@@ -206,7 +206,7 @@ You’ve been provided “starter code” for this phase. Copy the starter code 
 - Estimate of time needed to complete: 2 hours
 - Start time: 12:30 pm
 - Finish time: 5:30 pm
-- Actual time needed to complete: **_*5 hours*_**
+- Actual time needed to complete: **_5 hours_**
 
 <hr/>
 
@@ -217,6 +217,23 @@ You’ve been provided “starter code” for this phase. Copy the starter code 
 - Actual time needed to complete: 5 hours
 
 <hr/>
+
+- Number and name of feature: phase 2 another BUG - another 3 hour search - dont use fancy handleInput function - it makes the e from e.target.name and e.target.value to become an object instead of a function... - but I found it and app is working again
+- Estimate of time needed to complete: 1 hour
+- Start time: 12:30 pm
+- Finish time: 3:30 pm
+- Actual time needed to complete: **_3 hours_**
+
+<hr/>
+
+- Number and name of feature: phase 2 - implement ajax hook
+- Estimate of time needed to complete: 1 hours
+- Start time: 4:30 pm
+- Finish time: 6:30 pm
+- Actual time needed to complete: 2 hours
+
+<hr/>
+
 ## Setup
 
 git clone repo from github link:
