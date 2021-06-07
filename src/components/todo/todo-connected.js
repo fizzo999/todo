@@ -35,28 +35,43 @@ const ToDo = () => {
     await setOptions(requestOptions);
   };
 
-  const _updateItem = (itemObject) => {
+  // const _updateItem = (itemObject) => {
+  //   console.log('WE MADE IT INTO UPDATE', itemObject);
+  //   let item = list.filter(i => i._id === itemObject._id)[0] || {};
+  //   if(item._id){
+  //     fetch(`${todoAPI}/${item._id}`, {
+  //       method: 'put',
+  //       mode: 'cors',
+  //       cache: 'no-cache',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(itemObject)
+  //     })
+  //       .then(response => {
+  //         console.log('well here is the response.status', response.status);
+  //         response.json();
+  //       })
+  //       .then(() => {
+  //         let newList = list.map(listItem => listItem._id === itemObject._id ? itemObject : listItem);
+  //         setList(newList);
+  //       })
+  //       .catch(console.error);
+  //   }
+  // };
+
+  const _updateItem = async (itemObject) => {
     console.log('WE MADE IT INTO UPDATE', itemObject);
-    let item = list.filter(i => i._id === itemObject._id)[0] || {};
-    if(item._id){
-      fetch(`${todoAPI}/${item._id}`, {
+    // let item = list.filter(i => i._id === itemObject._id)[0] || {};
+    // if(item._id){
+    if(itemObject._id){
+      const requestOptions = {
         method: 'put',
-        mode: 'cors',
-        cache: 'no-cache',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(itemObject)
-      })
-        .then(response => {
-          console.log('well here is the response.status', response.status);
-          response.json();
-        })
-        .then(() => {
-          let newList = list.map(listItem => listItem._id === itemObject._id ? itemObject : listItem);
-          setList(newList);
-        })
-        .catch(console.error);
+        url: `${todoAPI}/${itemObject._id}`,
+        data: itemObject,
+      };
+      await setOptions(requestOptions);
     }
-  };
+  }
+
 
   const _deleteItem = async(id) => {
     const requestOptions = {
