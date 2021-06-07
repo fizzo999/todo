@@ -5,7 +5,8 @@ import useForm from '../hooks/form.js';
 
 function TodoForm(props) {
   const [item, setItem] = useState({});
-  const [handleSubmit, handleInput, handleChange, values] = useForm(getTaskCallback);
+  const [handleSubmit, handleChange, values] = useForm(getTaskCallback);
+  // const [handleSubmit, handleInput, handleChange, values] = useForm(props.handleSubmit);
 
   function getTaskCallback(task) {
     setItem(task);
@@ -17,18 +18,19 @@ function TodoForm(props) {
   //   console.log('WE ARE IN form AND STATE CHANGEING ITEM', item);
   // };
 
-   const handletheSubmit = (e) => {
+  const handletheSubmit = (e) => {
     e.preventDefault();
     e.persist();
     handleSubmit(e);
     props.handleSubmit(values);
-    e.target.reset();
-    setItem({});
+    // e.target.reset();
+    // setItem({});
+    console.log(item);
   };
 
-    return (
-      <>
-        <Card>
+  return (
+    <>
+      <Card>
         <h3>Add Item</h3>
         <form onSubmit={handletheSubmit}>
           <label>
@@ -40,21 +42,20 @@ function TodoForm(props) {
             />
           </label>
           <label>
-            <span>Difficulty Rating {values.difficulty || "1"}</span>
+            <span>Difficulty Rating {values.difficulty || '1'}</span>
             <input defaultValue="1" type="range" min="1" max="5" name="difficulty" onChange={handleChange} />
           </label>
           <label>
             <span>Assigned To</span>
-            <input type="text" name="assignee" placeholder="Assigned To" {...handleInput} />
+            <input type="text" name="assignee" placeholder="Assigned To" onChange={handleChange} />
           </label>
           <Button variant="primary" type="submit">
             Add Item
           </Button>
         </form>
-
-        </Card>
-      </>
-    );
+      </Card>
+    </>
+  );
 }
 
 export default TodoForm;
@@ -68,5 +69,5 @@ export default TodoForm;
 <p>This is data that is collected after the form is submitted:</p>
 {
   Object.keys(item).map((key, idx) => <p key={idx}>{key}: {item[key]}</p>)
-}     
+}
 </div> */}
