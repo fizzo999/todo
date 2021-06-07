@@ -23,8 +23,8 @@ function TodoForm(props) {
     e.persist();
     handleSubmit(e);
     props.handleSubmit(values);
-    // e.target.reset();
-    // setItem({});
+    e.target.reset();
+    setItem({});
     console.log(item);
   };
 
