@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { SettingsContext } from '../../context/settings/context.js';
 
-function header(props) {
+function Header(props) {
   
   const siteContext = useContext(SettingsContext);
+  console.log('props=========>>>>>>>>>>',props);
   
   return (
     <header>
@@ -14,5 +15,5 @@ function header(props) {
   );
 }
 
-export default header;
+export default Header;
  

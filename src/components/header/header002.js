@@ -1,5 +1,5 @@
 import React, { useContext, Component } from 'react';
-import { SettingsContext } from '../../context/settings/context.js';
+import { SettingsContext } from '../../context/settings/context003.js';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
