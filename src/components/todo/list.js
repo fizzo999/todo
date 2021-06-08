@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { SettingsContext } from '../../context/settings/context.js';
 import Card from 'react-bootstrap/Card';
 // import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
@@ -15,6 +16,7 @@ function TodoList(props) {
   const [modalItem, setModalItem] = useState(initialValue);
   const [modalItemFromForm, setModalItemFromForm] = useState({});
   const [handleSubmit, handleChange, values] = useForm(getTaskCallback);
+  const siteContext = useContext(SettingsContext);
 
   function getTaskCallback(task) {
     setModalItemFromForm(task);
@@ -53,10 +55,13 @@ function TodoList(props) {
     }
     setShowModal(true);
   };
+  let firstCardIndex = ((siteContext.currentPage * siteContext.paginationNumber ) - siteContext.paginationNumber);
+  let lastCardIndex = siteContext.currentPage * siteContext.paginationNumber;
+  let cardsToRender = props.list.slice(firstCardIndex, lastCardIndex);
 
   return (
     <>
-      {props.list.map(item => (
+      {cardsToRender.map(item => (
         <>
           <When condition={showModal}>
             <form>
