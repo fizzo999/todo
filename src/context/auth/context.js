@@ -8,7 +8,7 @@ class Auth extends React.Component {
     this.state = {
       loggedIn: false,
 
-    }
+    };
   }
 }
 export default Auth;

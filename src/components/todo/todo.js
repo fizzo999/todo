@@ -35,20 +35,20 @@ function ToDo() {
     // document.title being updated in the lifecycle, using useEffect, is considered a "side effect"
     console.log('this updates only when i add a task');
     let finished = list.filter(item => item.complete === true);
-    if (list.length > 0) { document.title = `Finished tasks: ${finished.length || '0' } Yet todo: ${list.length - finished.length}`};
+    if (list.length > 0) { document.title = `Finished tasks: ${finished.length || '0' } Yet todo: ${list.length - finished.length}`;};
   }, [list]);
 
   // on initial mount of component
   useEffect(() => {
     console.log('this will run on initial mounting of our component');
-      let sampleList = [
-        { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A'},
-        { _id: 2, complete: false, text: 'Do the Laundry', difficulty: 2, assignee: 'Person A'},
-        { _id: 3, complete: false, text: 'Walk the Dog', difficulty: 4, assignee: 'Person B'},
-        { _id: 4, complete: true, text: 'Do Homework', difficulty: 3, assignee: 'Person C'},
-        { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B'},
-      ];
-      setList(sampleList);
+    let sampleList = [
+      { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A'},
+      { _id: 2, complete: false, text: 'Do the Laundry', difficulty: 2, assignee: 'Person A'},
+      { _id: 3, complete: false, text: 'Walk the Dog', difficulty: 4, assignee: 'Person B'},
+      { _id: 4, complete: true, text: 'Do Homework', difficulty: 3, assignee: 'Person C'},
+      { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B'},
+    ];
+    setList(sampleList);
   }, []);
 
   const handleStorage = async (singleItem) => {
@@ -71,7 +71,7 @@ function ToDo() {
       // !contained && console.log('YES WE ABSOLUTELY DO already have this in local STORAGE');
       await localStorage.setItem('itemKey', JSON.stringify(newStorageArray));
     }
-  }
+  };
 
 
   return (
