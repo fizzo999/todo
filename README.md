@@ -10,9 +10,9 @@ To Do List Manager using react - built in 4 phases. A Web Application for secure
 
 ## links and resources
 
-## <center> [sandbox deployed site](https://6yvwb.csb.app/) </center>
+<!-- ## <center> [sandbox deployed site](https://6yvwb.csb.app/) </center> -->
 
-<!-- ## <center> [netlify deployed link](https://eager-albattani-da23df.netlify.app/) </center> -->
+## <center> [netlify deployed link](https://60beffe94bcd4ec8a2ba14d7--eager-albattani-da23df.netlify.app/) </center>
 
 ![](./src/assets/ToDoApp001.PNG)
 
@@ -234,6 +234,13 @@ You’ve been provided “starter code” for this phase. Copy the starter code 
 
 <hr/>
 
+- Number and name of feature: phase 3 - implement pagination, fix bugs with Kris Esvelt
+- Estimate of time needed to complete: 1 hours
+- Start time: 4:30 pm
+- Finish time: 7:30 pm
+- Actual time needed to complete: 3 hours
+
+<hr/>
 ## Setup
 
 git clone repo from github link:
