@@ -21,6 +21,7 @@ const useAjax = () => {
         setIsLoading(false);
       } catch(error) {
         setError(error);
+        setIsLoading(false);
       }
     }
     ajax();

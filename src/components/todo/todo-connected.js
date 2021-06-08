@@ -2,10 +2,14 @@ import React, { useEffect, useState, useContext, useCallback } from 'react';
 import { SettingsContext } from '../../context/settings/context.js';
 // import { AuthContext } from '../../context/auth/context.js';
 import { When } from 'react-if';
+import useAjax from '../hooks/ajax.js';
+import Header from '../header/header.js';
 // import Header from '../header/header002.js';
+
 import TodoForm from './form.js';
 import TodoList from './list.js';
-import useAjax from '../hooks/ajax.js';
+import Pagination from '../pagination/pagination.js';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -35,33 +39,8 @@ const ToDo = () => {
     await setOptions(requestOptions);
   };
 
-  // const _updateItem = (itemObject) => {
-  //   console.log('WE MADE IT INTO UPDATE', itemObject);
-  //   let item = list.filter(i => i._id === itemObject._id)[0] || {};
-  //   if(item._id){
-  //     fetch(`${todoAPI}/${item._id}`, {
-  //       method: 'put',
-  //       mode: 'cors',
-  //       cache: 'no-cache',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify(itemObject)
-  //     })
-  //       .then(response => {
-  //         console.log('well here is the response.status', response.status);
-  //         response.json();
-  //       })
-  //       .then(() => {
-  //         let newList = list.map(listItem => listItem._id === itemObject._id ? itemObject : listItem);
-  //         setList(newList);
-  //       })
-  //       .catch(console.error);
-  //   }
-  // };
-
   const _updateItem = async (itemObject) => {
     console.log('WE MADE IT INTO UPDATE', itemObject);
-    // let item = list.filter(i => i._id === itemObject._id)[0] || {};
-    // if(item._id){
     if(itemObject._id){
       const requestOptions = {
         method: 'put',
@@ -121,20 +100,7 @@ const ToDo = () => {
   return (
     <>
       <When condition={list.length > 0 && list.map(item => item.complete)}>
-        <header>
-          <Navbar bg="primary" variant="dark">
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link href="/">
-                  <h2>
-                    There are {list.filter(item => !item.complete).length} Items To Complete - #items/Page: {siteContext.paginationNumber}
-                  </h2>
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </header>
+        <Header list={list}></Header>
       </When>
 
       <section className="todo">
@@ -151,6 +117,9 @@ const ToDo = () => {
             handleUpdate={_updateItem}
             handleDelete={_deleteItem}
           />
+          <When condition={true}>
+            <Pagination/>
+          </When>
         </div>
       </section>
     </>
@@ -158,3 +127,5 @@ const ToDo = () => {
 };
 
 export default ToDo;
+
+{/* <When condition={context.pages > 1}> */}
