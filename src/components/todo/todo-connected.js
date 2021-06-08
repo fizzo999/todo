@@ -117,7 +117,7 @@ const ToDo = () => {
             handleDelete={_deleteItem}
           />
           <When condition={true}>
-            <Pagination/>
+            <Pagination list={list}/>
           </When>
         </div>
       </section>

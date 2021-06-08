@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { SettingsContext } from '../../context/settings/context.js';
 
+
 const usePagination = (action) => {
 
   const context = useContext(SettingsContext);
   // console.log(context.pages);
-  const dataLimit = 5 ;
+  const dataLimit = 3 ;
 
   function goToNextPage() {
     context.setCurrentPage(context.currentPage + 1);

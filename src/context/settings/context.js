@@ -9,6 +9,8 @@ function Settings(props) {
   const [pages, setPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [sortSelected, setSortSelected] = useState('');
+  const [paginationNumber, setPaginationNumber] = useState(3);
+
   const state = {
     list,
     setList,
@@ -19,7 +21,9 @@ function Settings(props) {
     currentPage,
     setCurrentPage,
     loading,
-    setLoading
+    setLoading,
+    paginationNumber,
+    setPaginationNumber
   };
 
   return (
