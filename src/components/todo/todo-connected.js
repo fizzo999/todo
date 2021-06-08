@@ -49,8 +49,7 @@ const ToDo = () => {
       };
       await setOptions(requestOptions);
     }
-  }
-
+  };
 
   const _deleteItem = async(id) => {
     const requestOptions = {
@@ -63,7 +62,7 @@ const ToDo = () => {
   const _toggleComplete = async(id) => {
     const item = list.filter(i => i._id === id)[0] || {};
     if (item._id) {
-      item.complete = !item.complete
+      item.complete = !item.complete;
       const requestOptions = {
         method: 'put',
         url: `${todoAPI}/${id}`,

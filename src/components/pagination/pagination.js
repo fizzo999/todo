@@ -11,18 +11,14 @@ export default function Pagination() {
         back
       </button>
       {getPaginationGroup().map((item, idx) => (
-        <button key={idx}
-        onClick={ (e) => changePage(item)}
-        className={`paginationItem ${context.currentPage === item ? 'active' : null}`}>
+        <button key={idx} onClick={ (e) => changePage(item)} className={`paginationItem ${context.currentPage === item ? 'active' : null}`}>
           <span>
             {item}
           </span>
         </button>
       ))}
 
-      <button
-      onClick={goToNextPage}
-      className={`next ${context.currentPage === context.pages ? 'disabled' : ''}`}>
+      <button onClick={goToNextPage} className={`next ${context.currentPage === context.pages ? 'disabled' : ''}`}>
         next
       </button>
     </div>

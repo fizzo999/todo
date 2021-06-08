@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import useForm from '../hooks/form.js';
+import PropTypes from 'prop-types';
 
 function TodoForm(props) {
   const [item, setItem] = useState({});
@@ -57,6 +58,10 @@ function TodoForm(props) {
     </>
   );
 }
+
+TodoForm.propTypes = {
+  handleSubmit: PropTypes.func,
+};
 
 export default TodoForm;
 

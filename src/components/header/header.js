@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { SettingsContext } from '../../context/settings/context.js';
+import PropTypes from 'prop-types';
 
 function Header(props) {
-  
+
   const siteContext = useContext(SettingsContext);
   console.log('props=========>>>>>>>>>>',props);
-  
+
   return (
     <header>
       <h2>
@@ -14,6 +15,9 @@ function Header(props) {
     </header>
   );
 }
+Header.propTypes = {
+  list:PropTypes.array
+};
+
 
 export default Header;
- 
