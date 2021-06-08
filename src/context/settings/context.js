@@ -1,5 +1,5 @@
-  
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const SettingsContext = React.createContext();
 
@@ -20,13 +20,17 @@ function Settings(props) {
     setCurrentPage,
     loading,
     setLoading
-  }
-  
+  };
+
   return (
     <SettingsContext.Provider value={state}>
       {props.children}
     </SettingsContext.Provider>
-  )
-}
+  );
+};
+
+Settings.propTypes = {
+  children: PropTypes.array
+};
 
 export default Settings;

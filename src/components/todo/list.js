@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { When } from 'react-if';
 import useForm from '../hooks/form.js';
+import PropTypes from 'prop-types';
 
 
 function TodoList(props) {
@@ -107,5 +108,11 @@ function TodoList(props) {
     </>
   );
 }
+TodoList.propTypes = {
+  handleDelete: PropTypes.func,
+  handleComplete: PropTypes.func,
+  handleUpdate: PropTypes.func,
+  list: PropTypes.array
+};
 
 export default TodoList;
