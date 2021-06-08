@@ -6,7 +6,7 @@ const usePagination = (action) => {
   const context = useContext(SettingsContext);
   // console.log(context.pages);
   const dataLimit = 5 ;
-  
+
   function goToNextPage() {
     context.setCurrentPage(context.currentPage + 1);
   }
@@ -32,7 +32,7 @@ const usePagination = (action) => {
   const getPaginationGroup = () => {
     let start = Math.floor((context.currentPage - 1) / dataLimit) * dataLimit;
     return new Array(context.pages).fill().map((_, idx) => start + idx + 1);
-  }; 
+  };
 
   return [
     goToNextPage,
@@ -40,7 +40,7 @@ const usePagination = (action) => {
     changePage,
     getPaginatedData,
     getPaginationGroup
-  ]
-}
+  ];
+};
 
 export default usePagination;
